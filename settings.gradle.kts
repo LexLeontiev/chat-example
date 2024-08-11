@@ -13,7 +13,7 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = ("kotlin-android-template")
+rootProject.name = ("chatexample")
 
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 

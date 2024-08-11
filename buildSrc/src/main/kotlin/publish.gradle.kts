@@ -61,7 +61,7 @@ publishing {
                     version = "$version-SNAPSHOT"
                 }
                 description.set("A template for Kotlin Android projects")
-                url.set("https://github.com/cortinico/kotlin-android-template/")
+                url.set("https://github.com/lexleontiev/chatexample/")
 
                 licenses {
                     license {
@@ -71,18 +71,18 @@ publishing {
                 }
                 developers {
                     developer {
-                        id.set("cortinico")
-                        name.set("Nicola Corti")
+                        id.set("lexleontiev")
+                        name.set("lexleontiev")
                     }
                 }
                 scm {
-                    connection.set("scm:git:git://github.com/cortinico/kotlin-android-template.git")
-                    developerConnection.set("scm:git:ssh://github.com/cortinico/kotlin-android-template.git")
-                    url.set("https://github.com/cortinico/kotlin-android-template/")
+                    connection.set("scm:git:git://github.com/lexleontiev/chatexample.git")
+                    developerConnection.set("scm:git:ssh://github.com/lexleontiev/chatexample.git")
+                    url.set("https://github.com/lexleontiev/chatexample/")
                 }
                 issueManagement {
                     system.set("GitHub Issues")
-                    url.set("https://github.com/cortinico/kotlin-android-template/issues")
+                    url.set("https://github.com/lexleontiev/chatexample/issues")
                 }
             }
         }
