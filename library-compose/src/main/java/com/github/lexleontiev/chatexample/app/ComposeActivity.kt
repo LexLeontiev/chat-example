@@ -13,14 +13,14 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
-import com.github.lexleontiev.chatexample.app.ui.components.Factorial
+import com.github.lexleontiev.chatexample.app.ui.components.ChatScreen
+import com.github.lexleontiev.chatexample.app.ui.components.Message
+import com.github.lexleontiev.chatexample.app.ui.components.Message.Companion.mockList
 
 class ComposeActivity : ComponentActivity() {
-    @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
@@ -29,7 +29,6 @@ class ComposeActivity : ComponentActivity() {
     }
 }
 
-@ExperimentalAnimationApi
 @Preview
 @Composable
 fun AppMain() {
@@ -37,21 +36,26 @@ fun AppMain() {
         Scaffold(
             topBar = {
                 TopAppBar(
-                    title = { Text(text = "Kotlin Android Template") },
+                    title = { Text(text = "Sarah") },
                     backgroundColor = MaterialTheme.colors.primary
                 )
             },
             backgroundColor = MaterialTheme.colors.background
         ) {
-            Box(
-                modifier = Modifier
-                    .padding(it)
-                    .fillMaxSize()
-                    .wrapContentSize(align = Alignment.Center)
-                    .padding(horizontal = 8.dp)
-            ) {
-                Factorial()
-            }
+            val messages = remember { mutableStateOf(mutableListOf<Message>().apply {
+                addAll(mockList())
+            }) }
+            ChatScreen(
+                messages = messages,
+                onMessageSend = {
+                    val newMessage = Message(
+                        content = it,
+                        timestamp = System.currentTimeMillis(),
+                        isSentByUser = true
+                    )
+                    messages.value.add(newMessage)
+                }
+            )
         }
     }
 }

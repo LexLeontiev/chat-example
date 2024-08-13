@@ -4,7 +4,7 @@
     <application>
         <activity
             android:name="com.github.lexleontiev.chatexample.app.ComposeActivity"
-            android:exported="false" />
+            android:exported="true" />
     </application>
 
 </manifest>
