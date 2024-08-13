@@ -5,6 +5,7 @@ plugins {
     kotlin("android")
     id("maven-publish")
     alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     publish
 }
 
@@ -61,6 +62,9 @@ dependencies {
     implementation(libs.room.runtime)
     implementation(libs.room.ktx)
     ksp(libs.room.compiler)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
 

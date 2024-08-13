@@ -2,6 +2,8 @@ plugins {
     id("com.android.library")
     alias(libs.plugins.compose.compiler)
     kotlin("android")
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -46,6 +48,7 @@ android {
 
 dependencies {
     implementation(projects.libraryKotlin)
+    implementation(projects.libraryAndroid)
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
 
@@ -55,6 +58,11 @@ dependencies {
     implementation(libs.compose.ui.tooling)
     implementation(libs.compose.foundation)
     implementation(libs.compose.material)
+    implementation(libs.lifecycle.runtime.compose)
+
+    implementation(libs.hilt.android)
+    implementation(libs.hilt.navigation.compose)
+    ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
 
