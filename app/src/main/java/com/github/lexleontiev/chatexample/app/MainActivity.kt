@@ -6,7 +6,7 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.lexleontiev.chatexample.app.databinding.ActivityMainBinding
 import com.github.lexleontiev.chatexample.library.FactorialCalculator
-import com.github.lexleontiev.chatexample.library.android.ToastUtil
+
 
 class MainActivity : AppCompatActivity() {
 
@@ -32,7 +32,6 @@ class MainActivity : AppCompatActivity() {
             } else {
                 getString(R.string.please_enter_a_number)
             }
-            ToastUtil.showToast(this, message)
         }
 
         binding.buttonAppcompose.setOnClickListener {

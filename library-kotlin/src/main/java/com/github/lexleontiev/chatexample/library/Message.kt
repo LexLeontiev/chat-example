@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.app.ui.components
+package com.github.lexleontiev.chatexample.library
 
 import java.text.SimpleDateFormat
 import java.util.Date

@@ -12,7 +12,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.TextFieldValue
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
-import com.github.lexleontiev.chatexample.app.ui.components.Message.Companion.mockList
+import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.Message.Companion.mockList
 
 
 @Composable

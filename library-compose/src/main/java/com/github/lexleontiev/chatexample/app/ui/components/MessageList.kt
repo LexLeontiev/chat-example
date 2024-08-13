@@ -9,7 +9,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
-import com.github.lexleontiev.chatexample.app.ui.components.Message.Companion.mockList
+import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.Message.Companion.mockList
 
 
 @Composable

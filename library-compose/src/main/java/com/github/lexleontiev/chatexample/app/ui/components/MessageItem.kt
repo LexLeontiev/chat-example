@@ -18,7 +18,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
-import com.github.lexleontiev.chatexample.app.ui.components.Message.Companion.formatDate
+import com.github.lexleontiev.chatexample.library.Message
 
 
 @Composable
@@ -36,7 +36,7 @@ internal fun MessageItem(message: Message) {
     ) {
         Column(horizontalAlignment = alignment) {
             Text(
-                text = formatDate(message.timestamp),
+                text = Message.formatDate(message.timestamp),
                 fontSize = 10.sp,
                 color = Color.Gray,
                 textAlign = TextAlign.Center,
