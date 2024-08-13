@@ -6,6 +6,7 @@ import java.util.Locale
 
 
 data class Message(
+    val id: Int,
     val content: String,
     val timestamp: Long,
     val isSentByUser: Boolean
@@ -14,12 +15,14 @@ data class Message(
     companion object {
 
         fun new(isSentByUser: Boolean, text: String): Message = Message(
+            id = 0,
             content = text,
             timestamp = System.currentTimeMillis(),
             isSentByUser = isSentByUser
         )
 
         fun mock(isSentByUser: Boolean, text: String? = null): Message = Message(
+            id = 0,
             content = text ?: "Test message",
             timestamp = System.currentTimeMillis(),
             isSentByUser = isSentByUser

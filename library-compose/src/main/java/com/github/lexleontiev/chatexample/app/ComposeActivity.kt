@@ -1,5 +1,6 @@
 package com.github.lexleontiev.chatexample.app
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -24,6 +25,7 @@ class ComposeActivity : ComponentActivity() {
     }
 }
 
+@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview
 @Composable
 fun AppMain() {
@@ -35,7 +37,7 @@ fun AppMain() {
                     backgroundColor = MaterialTheme.colors.primary
                 )
             },
-            backgroundColor = MaterialTheme.colors.background
+            backgroundColor = MaterialTheme.colors.background,
         ) {
             val messages = remember { mutableStateOf(mutableListOf<Message>().apply {
                 addAll(Message.mockList())
@@ -43,9 +45,8 @@ fun AppMain() {
             ChatScreen(
                 messages = messages,
                 onMessageSend = {
-                    val newMessage = Message(
-                        content = it,
-                        timestamp = System.currentTimeMillis(),
+                    val newMessage = Message.new(
+                        text = it,
                         isSentByUser = true
                     )
                     messages.value.add(newMessage)
