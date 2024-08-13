@@ -4,6 +4,7 @@ plugins {
     id("com.android.library")
     kotlin("android")
     id("maven-publish")
+    alias(libs.plugins.ksp)
     publish
 }
 
@@ -52,8 +53,14 @@ android {
 }
 
 dependencies {
+    implementation(projects.libraryKotlin)
+
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     testImplementation(libs.junit)
 
