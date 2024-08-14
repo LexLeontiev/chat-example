@@ -4,6 +4,7 @@
     <application>
         <activity
             android:name="com.github.lexleontiev.chatexample.app.ui.ComposeActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="true" />
     </application>
 

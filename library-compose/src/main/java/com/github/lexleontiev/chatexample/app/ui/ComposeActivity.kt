@@ -35,7 +35,11 @@ fun AppMain() {
                 ChatAppBar(modifier = Modifier.statusBarsPadding())
             }
         ) { paddingValues ->
-            ChatScreen(modifier = Modifier.padding(paddingValues).navigationBarsPadding())
+            ChatScreen(
+                modifier = Modifier
+                    .padding(paddingValues)
+                    .navigationBarsPadding()
+            )
         }
     }
 }
