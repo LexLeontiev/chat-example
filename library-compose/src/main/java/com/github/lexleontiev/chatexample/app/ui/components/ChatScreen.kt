@@ -18,13 +18,14 @@ import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
 
 @Composable
 internal fun ChatScreen(
+    modifier: Modifier = Modifier,
     viewModel: ChatViewModel = hiltViewModel()
 ) {
     // don't collect data between onStop and onStart states
     val chatData by viewModel.chatData.collectAsStateWithLifecycle()
     var input by remember { mutableStateOf(TextFieldValue("")) }
 
-    Column(modifier = Modifier.fillMaxSize()) {
+    Column(modifier = modifier.fillMaxSize()) {
         MessageList(messages = chatData.messages, modifier = Modifier.weight(1f))
 
         MessageInput(

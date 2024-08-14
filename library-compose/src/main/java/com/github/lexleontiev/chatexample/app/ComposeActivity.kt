@@ -1,16 +1,18 @@
 package com.github.lexleontiev.chatexample.app
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.foundation.layout.navigationBarsPadding
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
-import androidx.compose.material.Text
-import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.lexleontiev.chatexample.app.ui.components.ChatScreen
+import com.github.lexleontiev.chatexample.app.ui.main.ChatAppBar
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -24,21 +26,16 @@ class ComposeActivity : ComponentActivity() {
     }
 }
 
-@SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Preview
 @Composable
 fun AppMain() {
     MaterialTheme {
         Scaffold(
             topBar = {
-                TopAppBar(
-                    title = { Text(text = "Sarah") },
-                    backgroundColor = MaterialTheme.colors.primary
-                )
-            },
-            backgroundColor = MaterialTheme.colors.background,
-        ) {
-            ChatScreen()
+                ChatAppBar(modifier = Modifier.statusBarsPadding())
+            }
+        ) { paddingValues ->
+            ChatScreen(modifier = Modifier.padding(paddingValues).navigationBarsPadding())
         }
     }
 }
