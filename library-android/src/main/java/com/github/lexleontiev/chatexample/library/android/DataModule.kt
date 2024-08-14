@@ -34,10 +34,9 @@ object DataModule {
     @Provides
     fun provideChatRepository(
         localDataSource: LocalDataSource,
-        networkDataSource: NetworkDataSource,
         memoryCache: MemoryCache
     ): ChatRepository {
-        return ChatRepositoryImpl(localDataSource, networkDataSource, memoryCache)
+        return ChatRepositoryImpl(localDataSource, memoryCache)
     }
 
 }

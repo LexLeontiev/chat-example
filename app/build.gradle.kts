@@ -10,6 +10,7 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
+        targetSdk = libs.versions.target.sdk.version.get().toInt()
         namespace = "com.github.lexleontiev.chatexample.app"
 
         applicationId = AppCoordinates.APP_ID
