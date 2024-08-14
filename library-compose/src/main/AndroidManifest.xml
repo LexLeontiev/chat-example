@@ -3,7 +3,7 @@
 
     <application>
         <activity
-            android:name="com.github.lexleontiev.chatexample.app.ComposeActivity"
+            android:name="com.github.lexleontiev.chatexample.app.ui.ComposeActivity"
             android:exported="true" />
     </application>
 

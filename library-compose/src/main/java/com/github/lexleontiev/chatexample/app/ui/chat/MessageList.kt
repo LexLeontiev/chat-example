@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.app.ui.components
+package com.github.lexleontiev.chatexample.app.ui.chat
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

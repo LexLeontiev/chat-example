@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.github.lexleontiev.chatexample.app.databinding.ActivityMainBinding
+import com.github.lexleontiev.chatexample.app.ui.ComposeActivity
 import com.github.lexleontiev.chatexample.library.FactorialCalculator
 
 

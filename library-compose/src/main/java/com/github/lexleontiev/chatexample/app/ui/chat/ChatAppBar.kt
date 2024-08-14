@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.app.ui.main
+package com.github.lexleontiev.chatexample.app.ui.chat
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row

@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.app.ui.components
+package com.github.lexleontiev.chatexample.app.ui.chat
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.ExperimentalAnimationApi

@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.app
+package com.github.lexleontiev.chatexample.app.ui
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -11,8 +11,8 @@ import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.github.lexleontiev.chatexample.app.ui.components.ChatScreen
-import com.github.lexleontiev.chatexample.app.ui.main.ChatAppBar
+import com.github.lexleontiev.chatexample.app.ui.chat.ChatAppBar
+import com.github.lexleontiev.chatexample.app.ui.chat.ChatScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 
