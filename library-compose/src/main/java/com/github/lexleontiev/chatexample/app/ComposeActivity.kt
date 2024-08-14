@@ -9,13 +9,12 @@ import androidx.compose.material.Scaffold
 import androidx.compose.material.Text
 import androidx.compose.material.TopAppBar
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.tooling.preview.Preview
 import com.github.lexleontiev.chatexample.app.ui.components.ChatScreen
-import com.github.lexleontiev.chatexample.library.Message
+import dagger.hilt.android.AndroidEntryPoint
 
 
+@AndroidEntryPoint
 class ComposeActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,19 +38,7 @@ fun AppMain() {
             },
             backgroundColor = MaterialTheme.colors.background,
         ) {
-            val messages = remember { mutableStateOf(mutableListOf<Message>().apply {
-                addAll(Message.mockList())
-            }) }
-            ChatScreen(
-                messages = messages,
-                onMessageSend = {
-                    val newMessage = Message.new(
-                        text = it,
-                        isSentByUser = true
-                    )
-                    messages.value.add(newMessage)
-                }
-            )
+            ChatScreen()
         }
     }
 }

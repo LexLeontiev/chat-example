@@ -1,12 +1,13 @@
 package com.github.lexleontiev.chatexample.library.android
 
 import com.github.lexleontiev.chatexample.library.Message
+import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.delay
 
 
-class NetworkDataSource {
+class NetworkDataSource @Inject constructor() {
 
     fun getMessages(): Flow<List<Message>> = flow {
         repeat (5) {

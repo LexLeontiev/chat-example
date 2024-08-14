@@ -1,9 +1,10 @@
 package com.github.lexleontiev.chatexample.library.android
 
 import com.github.lexleontiev.chatexample.library.Message
+import javax.inject.Inject
 
 
-class MemoryCache {
+class MemoryCache @Inject constructor() {
 
     private val messages: MutableList<Message> = mutableListOf()
 

@@ -1,0 +1,41 @@
+package com.github.lexleontiev.chatexample.app
+
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.github.lexleontiev.chatexample.app.ui.components.ChatData
+import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.android.ChatRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
+
+
+@HiltViewModel
+class ChatViewModel @Inject constructor(
+    private val chatRepo: ChatRepository
+) : ViewModel() {
+
+    private val _chatData = MutableStateFlow(ChatData.empty())
+    val chatData: StateFlow<ChatData> = _chatData
+
+    init {
+        viewModelScope.launch {
+            chatRepo.getMessages()
+                .collect { messages ->
+                    _chatData.value = ChatData(messages)
+                }
+        }
+    }
+
+    fun sendMessage(content: String) {
+        val message = Message.new(
+            text = content,
+            isSentByUser = true
+        )
+        viewModelScope.launch {
+            chatRepo.sendMessage(message)
+        }
+    }
+}
