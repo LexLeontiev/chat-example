@@ -13,6 +13,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -23,10 +24,13 @@ import com.github.lexleontiev.chatexample.library.Message
 
 @Composable
 internal fun MessageItem(message: Message) {
-    val backgroundColor = if (message.isSentByUser) Color(0xFFDCF8C6) else Color.White
+    val backgroundColor = if (message.isSentByUser) Color(0xFFFF4081) else Color(0xFFE0E0E0)
     val alignment = if (message.isSentByUser) Alignment.End else Alignment.Start
+    val textColor = if (message.isSentByUser) Color.White else Color.Black
     val paddingStart = if (message.isSentByUser) 48.dp else 8.dp
     val paddingEnd = if (message.isSentByUser) 8.dp else 48.dp
+    val r = 24.dp
+    val shape = if (message.isSentByUser) RoundedCornerShape(r, r, 0.dp, r) else RoundedCornerShape(r, r, r, 0.dp)
 
     Box(
         modifier = Modifier
@@ -34,24 +38,23 @@ internal fun MessageItem(message: Message) {
             .padding(start = paddingStart, end = paddingEnd),
         contentAlignment = Alignment.TopStart
     ) {
-        Column(horizontalAlignment = alignment) {
-            Text(
-                text = Message.formatDate(message.timestamp),
-                fontSize = 10.sp,
-                color = Color.Gray,
-                textAlign = TextAlign.Center,
-                modifier = Modifier.fillMaxWidth()
-            )
+        Column(
+            modifier = Modifier.fillMaxWidth(),
+            horizontalAlignment = alignment
+        ) {
             Text(
                 text = message.content,
+                color = textColor,
+                fontSize = 16.sp,
+                textAlign = TextAlign.Start,
                 modifier = Modifier
-                    .background(backgroundColor, shape = RoundedCornerShape(8.dp))
-                    .padding(8.dp)
+                    .clip(shape)
+                    .background(backgroundColor)
+                    .padding(horizontal = 16.dp, vertical = 8.dp)
             )
         }
     }
 }
-
 
 @ThemePreviews
 @Composable
