@@ -24,4 +24,8 @@ class LocalDataSource @Inject constructor(
     suspend fun saveMessages(messages: List<Message>) {
         messageDao.insertMessages(messages.map(Message::fromMessage))
     }
+
+    suspend fun removeAllMessages() {
+        messageDao.deleteAllMessages()
+    }
 }

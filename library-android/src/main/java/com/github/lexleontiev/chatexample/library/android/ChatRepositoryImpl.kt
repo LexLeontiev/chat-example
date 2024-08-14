@@ -30,4 +30,9 @@ class ChatRepositoryImpl(
         memoryCache.saveMessage(message)
         localDataSource.saveMessage(message)
     }
+
+    override suspend fun removeAllMessages() {
+        memoryCache.removeAllMessages()
+        localDataSource.removeAllMessages()
+    }
 }

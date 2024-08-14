@@ -30,12 +30,16 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
 import com.github.lexleontiev.chatexample.library.compose.R
 
 
 @Composable
-internal fun ChatAppBar(modifier: Modifier = Modifier) {
+internal fun ChatAppBar(
+    modifier: Modifier = Modifier,
+    viewModel: ChatViewModel = hiltViewModel()
+) {
     var expanded by remember { mutableStateOf(false) }
     TopAppBar(
         modifier = modifier.fillMaxWidth(),
@@ -83,9 +87,16 @@ internal fun ChatAppBar(modifier: Modifier = Modifier) {
                 DropdownMenuItem(
                     onClick = {
                         expanded = false
-                        // todo receive message
+                        viewModel.debugReceivingMessage()
                     }) {
                     Text("Receive message")
+                }
+                DropdownMenuItem(
+                    onClick = {
+                        expanded = false
+                        viewModel.debugClearChat()
+                    }) {
+                    Text("Clear chat")
                 }
             }
         },

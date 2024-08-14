@@ -17,4 +17,8 @@ class MemoryCache @Inject constructor() {
     fun saveMessages(newMessages: List<Message>) {
         messages.addAll(newMessages)
     }
+
+    fun removeAllMessages() {
+        messages.clear()
+    }
 }

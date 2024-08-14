@@ -37,4 +37,22 @@ class ChatViewModel @Inject constructor(
             chatRepo.sendMessage(message)
         }
     }
+
+    // use only for debug build
+    fun debugReceivingMessage() {
+        val message = Message.new(
+            text = "Hi there, How you doing?",
+            isSentByUser = false
+        )
+        viewModelScope.launch {
+            chatRepo.sendMessage(message)
+        }
+    }
+
+    // use only for debug build
+    fun debugClearChat() {
+        viewModelScope.launch {
+            chatRepo.removeAllMessages()
+        }
+    }
 }
