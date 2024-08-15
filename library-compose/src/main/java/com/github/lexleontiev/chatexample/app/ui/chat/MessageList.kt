@@ -11,16 +11,22 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
 import com.github.lexleontiev.chatexample.library.Message
-import com.github.lexleontiev.chatexample.library.Message.Companion.mockList
+import com.github.lexleontiev.chatexample.library.Message.Companion.mock
 
 
-internal const val TIME_BETWEEN_MSG_WITHOUT_SPACING_MS = 20 * 1000
+internal const val MSG_SPACING_DELAY_MS = 20 * 1000 // 20 seconds
+internal const val TIME_SECTION_DELAY_MS = 60 * 60 * 1000 // 1 hour
 
 internal fun addSpacing(msg: Message, prevMsg: Message?): Boolean {
-    if (prevMsg == null) return true
+    if (prevMsg == null) return false
     val sameUser = prevMsg.isSentByUser == msg.isSentByUser
-    val exceedThreshold = msg.timestamp - prevMsg.timestamp > TIME_BETWEEN_MSG_WITHOUT_SPACING_MS
+    val exceedThreshold = msg.timestamp - prevMsg.timestamp > MSG_SPACING_DELAY_MS
     return exceedThreshold || !sameUser
+}
+
+internal fun addTimeSection(msg: Message, prevMsg: Message?): Boolean {
+    if (prevMsg == null) return true
+    return msg.timestamp - prevMsg.timestamp > TIME_SECTION_DELAY_MS
 }
 
 @Composable
@@ -36,6 +42,9 @@ internal fun MessageList(
         items(messages.size) { index ->
             val message = messages[index]
             val previousMessage = messages.getOrNull(index - 1)
+            if (addTimeSection(message, previousMessage)) {
+                TimeSectionHeader(timestamp = message.timestamp)
+            }
             MessageItem(
                 message = message,
                 addSpacing = addSpacing(message, previousMessage)
@@ -50,5 +59,17 @@ private fun MessageListPreview() = MaterialTheme {
     MessageList(
         messages = mockList(),
         listState = rememberLazyListState()
+    )
+}
+
+private fun mockList(): List<Message> {
+    val timestamp = System.currentTimeMillis() - 2 * TIME_SECTION_DELAY_MS
+    return listOf(
+        mock(true, "Hello", timestamp = timestamp),
+        mock(true, "How are you?", timestamp = timestamp + 1000),
+        mock(false, "Hey hey, I'm fine :)", timestamp = timestamp + 2000),
+        mock(false, "What's new?", timestamp = timestamp + TIME_SECTION_DELAY_MS + 3000),
+        mock(true, "All good", timestamp + TIME_SECTION_DELAY_MS + 10000),
+        mock(true, "I'm alright as well, thank you", timestamp + TIME_SECTION_DELAY_MS + 10000 + MSG_SPACING_DELAY_MS + 1000)
     )
 }

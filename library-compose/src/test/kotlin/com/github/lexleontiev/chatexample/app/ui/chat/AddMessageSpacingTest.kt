@@ -124,4 +124,19 @@ class AddMessageSpacingTest {
         val actual = addSpacing(msg, prevMsg)
         assert(expected == actual)
     }
+
+    @Test
+    fun `first message without spacing`() {
+        val timestamp = System.currentTimeMillis()
+        val prevMsg: Message? = null
+        val msg = Message(
+            id = 1,
+            content = "msg",
+            timestamp = timestamp,
+            isSentByUser = true
+        )
+        val expected = false
+        val actual = addSpacing(msg, prevMsg)
+        assert(expected == actual)
+    }
 }
