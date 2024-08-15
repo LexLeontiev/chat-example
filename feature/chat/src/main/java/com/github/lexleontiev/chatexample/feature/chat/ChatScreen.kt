@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.feature.chat.components
+package com.github.lexleontiev.chatexample.feature.chat
 
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.core.tween
@@ -20,10 +20,11 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.github.lexleontiev.chatexample.feature.chat.ChatViewModel
-import com.github.lexleontiev.chatexample.feature.chat.ScreenState
-import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
 import com.github.lexleontiev.chatexample.feature.chat.components.AnimationConstants.MESSAGE_LIST_ANIM_DURATION_MS
+import com.github.lexleontiev.chatexample.feature.chat.components.LoadingCircle
+import com.github.lexleontiev.chatexample.feature.chat.components.MessageInput
+import com.github.lexleontiev.chatexample.feature.chat.components.MessageList
+import com.github.lexleontiev.chatexample.feature.chat.components.ScreenStub
 import kotlinx.coroutines.launch
 import kotlin.math.max
 
@@ -51,12 +52,13 @@ internal fun ChatScreen(
             LaunchedEffect(messages.size) {
                 if (isAtBottom) {
                     coroutineScope.launch {
-                        listState.animateScrollToItem(max(0, messages.size - 1))
+                        listState.scrollToItem(max(0, messages.size - 1))
                     }
                 }
             }
             LaunchedEffect(key1 = Unit) {
                 visible = true
+                listState.scrollToItem(max(0, messages.size - 1))
             }
             AnimatedVisibility(
                 visible = visible,
