@@ -7,17 +7,15 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.material.Icon
 import androidx.compose.material.MaterialTheme
-import androidx.compose.material.TextField
-import androidx.compose.material.TextFieldDefaults
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.Send
 import androidx.compose.runtime.Composable
@@ -35,8 +33,10 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
 
 
@@ -53,41 +53,38 @@ internal fun MessageInput(onSend: (String) -> Unit) {
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
             .shadow(8.dp, shape = RectangleShape)
             .background(Color.White)
-            .padding(horizontal = 12.dp, vertical = 20.dp),
+            .padding(16.dp),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        TextField(
+        BasicTextField(
             value = textState,
             onValueChange = { textState = it },
+            textStyle = TextStyle(
+                color = Color.Black,
+                fontSize = 16.sp,
+            ),
             modifier = Modifier
                 .weight(1f)
-                .height(56.dp)
                 .border(
                     width = 2.dp,
                     color = if (isFocused) Color(0xFFFF4081) else Color(0xFFBDBDBD),
                     shape = RoundedCornerShape(24.dp)
                 )
-                .padding(horizontal = 16.dp)
                 .clip(RoundedCornerShape(24.dp))
+                .heightIn(min = 48.dp, max = 150.dp)
+                .padding(horizontal = 16.dp, vertical = 12.dp)
                 .onFocusChanged { focusState ->
                     isFocused = focusState.isFocused
                 },
-            colors = TextFieldDefaults.textFieldColors(
-                backgroundColor = Color.White,
-                focusedIndicatorColor = Color.Transparent,
-                unfocusedIndicatorColor = Color.Transparent,
-                disabledIndicatorColor = Color.Transparent
-            )
         )
 
         Spacer(modifier = Modifier.width(16.dp))
 
         Box(
             modifier = Modifier
-                .size(56.dp)
+                .size(48.dp)
                 .alpha(if (hasText) 1f else 0.5f)
                 .clip(CircleShape)
                 .background(
