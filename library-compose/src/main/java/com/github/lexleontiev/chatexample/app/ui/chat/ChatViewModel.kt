@@ -2,7 +2,7 @@ package com.github.lexleontiev.chatexample.app.ui.chat
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.android.Message
 import com.github.lexleontiev.chatexample.library.android.ChatRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

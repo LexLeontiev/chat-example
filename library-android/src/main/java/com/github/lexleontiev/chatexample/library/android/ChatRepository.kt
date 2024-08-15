@@ -1,6 +1,5 @@
 package com.github.lexleontiev.chatexample.library.android
 
-import com.github.lexleontiev.chatexample.library.Message
 import kotlinx.coroutines.flow.Flow
 
 

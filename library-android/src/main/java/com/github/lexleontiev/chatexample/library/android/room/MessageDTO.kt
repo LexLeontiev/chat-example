@@ -2,7 +2,7 @@ package com.github.lexleontiev.chatexample.library.android.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.android.Message
 
 
 @Entity(tableName = "messages")

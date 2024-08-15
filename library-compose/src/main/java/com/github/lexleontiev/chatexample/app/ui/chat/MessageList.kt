@@ -10,8 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
-import com.github.lexleontiev.chatexample.library.Message
-import com.github.lexleontiev.chatexample.library.Message.Companion.mock
+import com.github.lexleontiev.chatexample.library.android.Message
+import com.github.lexleontiev.chatexample.library.android.Message.Companion.mock
 
 
 internal const val MSG_SPACING_DELAY_MS = 20 * 1000 // 20 seconds

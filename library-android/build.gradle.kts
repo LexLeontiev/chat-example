@@ -54,8 +54,6 @@ android {
 }
 
 dependencies {
-    implementation(projects.libraryKotlin)
-
     implementation(libs.androidx.appcompat)
     implementation(libs.androidx.core.ktx)
 

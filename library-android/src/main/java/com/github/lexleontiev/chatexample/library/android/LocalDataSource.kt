@@ -1,6 +1,5 @@
 package com.github.lexleontiev.chatexample.library.android
 
-import com.github.lexleontiev.chatexample.library.Message
 import com.github.lexleontiev.chatexample.library.android.room.MessageDTO
 import com.github.lexleontiev.chatexample.library.android.room.MessageDao
 import com.github.lexleontiev.chatexample.library.android.room.fromMessage

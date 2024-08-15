@@ -1,4 +1,4 @@
-package com.github.lexleontiev.chatexample.library
+package com.github.lexleontiev.chatexample.library.android
 
 
 data class Message(

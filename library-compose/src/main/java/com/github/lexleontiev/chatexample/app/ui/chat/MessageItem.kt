@@ -19,7 +19,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.github.lexleontiev.chatexample.app.ui.ThemePreviews
-import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.android.Message
 
 
 @Composable

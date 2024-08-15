@@ -1,6 +1,6 @@
 package com.github.lexleontiev.chatexample.app.ui.chat
 
-import com.github.lexleontiev.chatexample.library.Message
+import com.github.lexleontiev.chatexample.library.android.Message
 import org.junit.Test
 
 class AddMessageSpacingTest {
