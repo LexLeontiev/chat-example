@@ -10,10 +10,11 @@ class MemoryCache @Inject constructor() {
     fun getMessages(): List<Message> = messages
 
     fun saveMessage(message: Message) {
-        messages.add(message)
+        messages.add(0, message)
     }
 
     fun saveMessages(newMessages: List<Message>) {
+        messages.clear()
         messages.addAll(newMessages)
     }
 

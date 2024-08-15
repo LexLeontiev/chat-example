@@ -26,7 +26,6 @@ import com.github.lexleontiev.chatexample.feature.chat.components.MessageInput
 import com.github.lexleontiev.chatexample.feature.chat.components.MessageList
 import com.github.lexleontiev.chatexample.feature.chat.components.ScreenStub
 import kotlinx.coroutines.launch
-import kotlin.math.max
 
 
 @Composable
@@ -44,21 +43,26 @@ internal fun ChatScreen(
             val listState = rememberLazyListState()
             var visible by remember { mutableStateOf(false) }
             val isAtBottom by remember {
+                // Update this only when the condition changes.
                 derivedStateOf {
-                    val lastVisibleIndex = listState.layoutInfo.visibleItemsInfo.lastOrNull()?.index ?: 0
-                    lastVisibleIndex >= messages.size - 2
+                    val lastVisibleIndex = listState.layoutInfo.visibleItemsInfo
+                        .firstOrNull()?.index ?: 0
+                    // If you see the last two messages, the new message triggers scrolling to the
+                    // latest one
+                    lastVisibleIndex <= 2
                 }
             }
+            // Check every time the number of messages changes
             LaunchedEffect(messages.size) {
                 if (isAtBottom) {
                     coroutineScope.launch {
-                        listState.scrollToItem(max(0, messages.size - 1))
+                        listState.animateScrollToItem(0)
                     }
                 }
             }
+            // Start enter animation just once
             LaunchedEffect(key1 = Unit) {
                 visible = true
-                listState.scrollToItem(max(0, messages.size - 1))
             }
             AnimatedVisibility(
                 visible = visible,

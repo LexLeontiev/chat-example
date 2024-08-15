@@ -37,18 +37,20 @@ internal fun MessageList(
     LazyColumn(
         modifier = modifier.fillMaxWidth(),
         state = listState,
+        reverseLayout = true,
         contentPadding = PaddingValues(8.dp),
     ) {
         items(messages.size) { index ->
             val message = messages[index]
-            val previousMessage = messages.getOrNull(index - 1)
-            if (addTimeSection(message, previousMessage)) {
-                TimeSectionHeader(timestamp = message.timestamp)
-            }
+            // +1 because the list is reversed
+            val previousMessage = messages.getOrNull(index + 1)
             MessageItem(
                 message = message,
                 addSpacing = addSpacing(message, previousMessage)
             )
+            if (addTimeSection(message, previousMessage)) {
+                TimeSectionHeader(timestamp = message.timestamp)
+            }
         }
     }
 }
@@ -71,5 +73,5 @@ private fun mockList(): List<Message> {
         mock(false, "What's new?", timestamp = timestamp + TIME_SECTION_DELAY_MS + 3000),
         mock(true, "All good", timestamp + TIME_SECTION_DELAY_MS + 10000),
         mock(true, "I'm alright as well, thank you", timestamp + TIME_SECTION_DELAY_MS + 10000 + MSG_SPACING_DELAY_MS + 1000)
-    )
+    ).reversed()
 }
