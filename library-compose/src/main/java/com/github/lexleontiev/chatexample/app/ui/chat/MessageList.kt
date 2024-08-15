@@ -1,6 +1,5 @@
 package com.github.lexleontiev.chatexample.app.ui.chat
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.lazy.LazyColumn
@@ -15,6 +14,15 @@ import com.github.lexleontiev.chatexample.library.Message
 import com.github.lexleontiev.chatexample.library.Message.Companion.mockList
 
 
+internal const val TIME_BETWEEN_MSG_WITHOUT_SPACING_MS = 20 * 1000
+
+internal fun addSpacing(msg: Message, prevMsg: Message?): Boolean {
+    if (prevMsg == null) return true
+    val sameUser = prevMsg.isSentByUser == msg.isSentByUser
+    val exceedThreshold = msg.timestamp - prevMsg.timestamp > TIME_BETWEEN_MSG_WITHOUT_SPACING_MS
+    return exceedThreshold || !sameUser
+}
+
 @Composable
 internal fun MessageList(
     messages: List<Message>,
@@ -24,10 +32,14 @@ internal fun MessageList(
         modifier = modifier.fillMaxWidth(),
         state = listState,
         contentPadding = PaddingValues(8.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp)
     ) {
         items(messages.size) { index ->
-            MessageItem(message = messages[index])
+            val message = messages[index]
+            val previousMessage = messages.getOrNull(index - 1)
+            MessageItem(
+                message = message,
+                addSpacing = addSpacing(message, previousMessage)
+            )
         }
     }
 }
