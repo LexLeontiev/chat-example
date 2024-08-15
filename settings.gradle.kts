@@ -18,7 +18,7 @@ rootProject.name = ("chatexample")
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
 include(
-    "app",
-    "library-android",
-    "library-compose",
+    ":app",
+    ":data",
+    ":feature:chat",
 )
