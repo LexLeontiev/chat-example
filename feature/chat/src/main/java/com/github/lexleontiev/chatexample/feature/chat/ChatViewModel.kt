@@ -6,6 +6,7 @@ import com.github.lexleontiev.chatexample.data.Message
 import com.github.lexleontiev.chatexample.data.ChatRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
@@ -16,14 +17,16 @@ class ChatViewModel @Inject constructor(
     private val chatRepo: ChatRepository
 ) : ViewModel() {
 
-    private val _chatData = MutableStateFlow(ChatData.empty())
-    val chatData: StateFlow<ChatData> = _chatData
+    private val _uiState = MutableStateFlow<ScreenState>(ScreenState.Progress)
+    val uiState: StateFlow<ScreenState> = _uiState
 
     init {
+        _uiState.value = ScreenState.Progress
         viewModelScope.launch {
+            delay(2000) // imitate network call
             chatRepo.getMessages()
                 .collect { messages ->
-                    _chatData.value = ChatData(messages)
+                    _uiState.value = ScreenState.Result(ChatData(messages))
                 }
         }
     }

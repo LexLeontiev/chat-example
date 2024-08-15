@@ -24,13 +24,14 @@ import com.github.lexleontiev.chatexample.data.Message
 
 @Composable
 internal fun MessageItem(message: Message, addSpacing: Boolean) {
-    val backgroundColor = if (message.isSentByUser) Color(0xFFFF4081) else Color(0xFFE0E0E0)
+    val backgroundColor = if (message.isSentByUser) ChatColors.purple else ChatColors.lightGray
     val alignment = if (message.isSentByUser) Alignment.End else Alignment.Start
     val textColor = if (message.isSentByUser) Color.White else Color.Black
     val paddingStart = if (message.isSentByUser) 48.dp else 8.dp
     val paddingEnd = if (message.isSentByUser) 8.dp else 48.dp
     val r = 24.dp
-    val shape = if (message.isSentByUser) RoundedCornerShape(r, r, 0.dp, r) else RoundedCornerShape(r, r, r, 0.dp)
+    val shape = if (message.isSentByUser) RoundedCornerShape(r, r, 0.dp, r)
+                else RoundedCornerShape(r, r, r, 0.dp)
     val spacing = if (addSpacing) 12.dp else 4.dp
     Box(
         modifier = Modifier

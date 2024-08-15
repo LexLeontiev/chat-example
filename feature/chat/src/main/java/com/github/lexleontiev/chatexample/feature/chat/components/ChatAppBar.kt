@@ -102,7 +102,7 @@ internal fun ChatAppBar(
             }
         },
         backgroundColor = Color.White,
-        contentColor = Color(0xFF374655),
+        contentColor = ChatColors.darkGray,
         elevation = 4.dp
     )
 }

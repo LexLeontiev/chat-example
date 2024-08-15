@@ -69,7 +69,7 @@ internal fun MessageInput(onSend: (String) -> Unit) {
                 .weight(1f)
                 .border(
                     width = 2.dp,
-                    color = if (isFocused) Color(0xFFFF4081) else Color(0xFFBDBDBD),
+                    color = if (isFocused) ChatColors.purple else ChatColors.mediumGray,
                     shape = RoundedCornerShape(24.dp)
                 )
                 .clip(RoundedCornerShape(24.dp))
@@ -89,7 +89,7 @@ internal fun MessageInput(onSend: (String) -> Unit) {
                 .clip(CircleShape)
                 .background(
                     brush = Brush.linearGradient(
-                        colors = listOf(Color(0xFFFF8A80), Color(0xFFFF4081))
+                        colors = listOf(ChatColors.orange, ChatColors.purple)
                     )
                 )
                 .clickable(hasText) {
