@@ -34,6 +34,7 @@ import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
@@ -80,7 +81,8 @@ internal fun MessageInput(onSend: (String) -> Unit) {
                 .padding(horizontal = 16.dp, vertical = 12.dp)
                 .onFocusChanged { focusState ->
                     isFocused = focusState.isFocused
-                },
+                }
+                .testTag("MessageInput_input_field"),
         )
 
         Spacer(modifier = Modifier.width(16.dp))

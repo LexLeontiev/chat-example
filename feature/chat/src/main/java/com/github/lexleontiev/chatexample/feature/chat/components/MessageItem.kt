@@ -15,6 +15,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -36,7 +37,8 @@ internal fun MessageItem(message: Message, addSpacing: Boolean) {
     Box(
         modifier = Modifier
             .fillMaxWidth()
-            .padding(start = paddingStart, end = paddingEnd),
+            .padding(start = paddingStart, end = paddingEnd)
+            .testTag("MessageItem"),
         contentAlignment = Alignment.TopStart
     ) {
         Column(

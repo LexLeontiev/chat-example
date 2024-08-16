@@ -13,7 +13,7 @@ android {
         minSdk = libs.versions.min.sdk.version.get().toInt()
         namespace = "com.github.lexleontiev.chatexample.feature.chat"
 
-        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner = "com.github.lexleontiev.chatexample.feature.chat.HiltTestRunner"
 
         vectorDrawables {
             useSupportLibrary = true
@@ -69,4 +69,6 @@ dependencies {
     androidTestImplementation(libs.compose.ui.test.junit4)
     androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.ext.junit)
+    androidTestImplementation(libs.hilt.testing)
+    kspAndroidTest(libs.hilt.compiler)
 }

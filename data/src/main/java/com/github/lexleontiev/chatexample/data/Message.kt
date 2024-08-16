@@ -19,10 +19,11 @@ data class Message(
 
         fun mock(
             isSentByUser: Boolean,
+            id: Int = 0,
             text: String? = null,
             timestamp: Long = System.currentTimeMillis()
         ): Message = Message(
-            id = 0,
+            id = id,
             content = text ?: "Test message",
             timestamp = timestamp,
             isSentByUser = isSentByUser

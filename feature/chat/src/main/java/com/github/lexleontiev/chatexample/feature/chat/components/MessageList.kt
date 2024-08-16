@@ -67,14 +67,14 @@ private fun MessageListPreview() = MaterialTheme {
     )
 }
 
-private fun mockList(): List<Message> {
+internal fun mockList(): List<Message> {
     val timestamp = System.currentTimeMillis() - 2 * TIME_SECTION_DELAY_MS
     return listOf(
-        mock(true, "Hello", timestamp = timestamp),
-        mock(true, "How are you?", timestamp = timestamp + 1000),
-        mock(false, "Hey hey, I'm fine :)", timestamp = timestamp + 2000),
-        mock(false, "What's new?", timestamp = timestamp + TIME_SECTION_DELAY_MS + 3000),
-        mock(true, "All good", timestamp + TIME_SECTION_DELAY_MS + 10000),
-        mock(true, "I'm alright as well, thank you", timestamp + TIME_SECTION_DELAY_MS + 10000 + MSG_SPACING_DELAY_MS + 1000)
+        mock(true, 0, "Hello", timestamp = timestamp),
+        mock(true, 1,"How are you?", timestamp = timestamp + 1000),
+        mock(false, 2, "Hey hey, I'm fine :)", timestamp = timestamp + 2000),
+        mock(false, 3, "What's new?", timestamp = timestamp + TIME_SECTION_DELAY_MS + 3000),
+        mock(true, 4, "All good", timestamp + TIME_SECTION_DELAY_MS + 10000),
+        mock(true, 5, "I'm alright as well, thank you", timestamp + TIME_SECTION_DELAY_MS + 10000 + MSG_SPACING_DELAY_MS + 1000)
     ).reversed()
 }
