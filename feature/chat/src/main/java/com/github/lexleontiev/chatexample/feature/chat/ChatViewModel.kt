@@ -48,7 +48,7 @@ class ChatViewModel @Inject constructor(
     // use only for debug build
     fun debugReceivingMessage() {
         val message = Message.new(
-            text = "Hi there, How you doing?",
+            text = Message.randomMessageText(),
             isSentByUser = false
         )
         viewModelScope.launch {
