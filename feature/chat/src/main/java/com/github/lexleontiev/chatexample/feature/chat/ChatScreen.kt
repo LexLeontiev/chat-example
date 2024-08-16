@@ -46,7 +46,7 @@ internal fun ChatScreen(
                 // Update this only when the condition changes.
                 derivedStateOf {
                     val lastVisibleIndex = listState.layoutInfo.visibleItemsInfo
-                        .firstOrNull()?.index ?: 0
+                        .firstOrNull()?.index ?: Int.MAX_VALUE
                     // If you see the last two messages, the new message triggers scrolling to the
                     // latest one
                     lastVisibleIndex <= 2

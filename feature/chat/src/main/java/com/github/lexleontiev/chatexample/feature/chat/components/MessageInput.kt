@@ -23,6 +23,7 @@ import androidx.compose.runtime.derivedStateOf
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -42,7 +43,9 @@ import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
 
 @Composable
 internal fun MessageInput(onSend: (String) -> Unit) {
-    var textState by remember { mutableStateOf(TextFieldValue("")) }
+    var textState by rememberSaveable(stateSaver = TextFieldValue.Saver) {
+        mutableStateOf(TextFieldValue(""))
+    }
     var isFocused by remember { mutableStateOf(false) }
     val hasText by remember {
         derivedStateOf {
