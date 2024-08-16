@@ -5,7 +5,8 @@ data class Message(
     val id: Int,
     val content: String,
     val timestamp: Long,
-    val isSentByUser: Boolean
+    val isSentByUser: Boolean,
+    val isRead: Boolean = false
 ) {
 
     companion object {
