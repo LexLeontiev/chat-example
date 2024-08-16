@@ -12,7 +12,16 @@ class LocalDataSource @Inject constructor(
     private val messageDao: MessageDao
 ) {
 
+    // For debug purposes only
+    companion object {
+        var throwFailure = false
+    }
+
     fun getMessages(): Flow<List<Message>> = messageDao.getAllMessages().map {
+        if (throwFailure) {
+            throwFailure = false
+            throw RuntimeException("Something went wrong")
+        }
         it.map(MessageDTO::toMessage)
     }
 

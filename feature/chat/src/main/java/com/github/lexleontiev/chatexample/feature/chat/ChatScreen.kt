@@ -96,8 +96,8 @@ internal fun ChatScreen(
                 contentAlignment = Alignment.Center
             ) {
                 ScreenStub(
-                    primaryText = "An error is occurred",
-                    secondaryText = "Reload feed"
+                    primaryText = "A network error has occurred",
+                    secondaryText = "Waiting for connection...",
                 )
             }
         }

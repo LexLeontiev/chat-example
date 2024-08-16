@@ -28,7 +28,7 @@ import com.github.lexleontiev.chatexample.feature.chat.components.AnimationConst
 @Composable
 internal fun ScreenStub(
     primaryText: String,
-    secondaryText: String,
+    secondaryText: String
 ) {
     Column(
         verticalArrangement = Arrangement.Center,
@@ -72,6 +72,6 @@ internal fun ScreenStub(
 private fun ScreenStubPreview() = MaterialTheme {
     ScreenStub(
         primaryText = "Text primary",
-        secondaryText = "Text secondary"
+        secondaryText = "Text secondary",
     )
 }

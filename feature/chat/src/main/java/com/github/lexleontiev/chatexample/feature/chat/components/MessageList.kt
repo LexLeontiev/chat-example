@@ -40,7 +40,10 @@ internal fun MessageList(
         reverseLayout = true,
         contentPadding = PaddingValues(8.dp),
     ) {
-        items(messages.size) { index ->
+        items(
+            count = messages.size,
+            key = { index -> messages[index].id }
+        ) { index ->
             val message = messages[index]
             // +1 because the list is reversed
             val previousMessage = messages.getOrNull(index + 1)

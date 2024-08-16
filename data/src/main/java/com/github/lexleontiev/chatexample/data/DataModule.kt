@@ -10,6 +10,7 @@ import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
+import kotlinx.coroutines.Dispatchers
 
 
 @Module
@@ -36,7 +37,7 @@ object DataModule {
         localDataSource: LocalDataSource,
         memoryCache: MemoryCache
     ): ChatRepository {
-        return ChatRepositoryImpl(localDataSource, memoryCache)
+        return ChatRepositoryImpl(localDataSource, memoryCache, Dispatchers.IO)
     }
 
 }

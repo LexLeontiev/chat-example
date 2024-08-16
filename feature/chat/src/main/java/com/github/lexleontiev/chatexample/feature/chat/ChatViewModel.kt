@@ -25,8 +25,12 @@ class ChatViewModel @Inject constructor(
         viewModelScope.launch {
             delay(2000) // imitate network call
             chatRepo.getMessages()
-                .collect { messages ->
-                    _uiState.value = ScreenState.Result(ChatData(messages))
+                .collect { result ->
+                    result.onSuccess { messages ->
+                        _uiState.value = ScreenState.Result(ChatData(messages))
+                    }.onFailure { _ ->
+                        _uiState.value = ScreenState.Error
+                    }
                 }
         }
     }
@@ -48,14 +52,23 @@ class ChatViewModel @Inject constructor(
             isSentByUser = false
         )
         viewModelScope.launch {
-            chatRepo.sendMessage(message)
+            try {
+                chatRepo.sendMessage(message)
+            } catch (e: Exception) {
+               // show error in UI
+            }
         }
     }
 
     // use only for debug build
     fun debugClearChat() {
         viewModelScope.launch {
-            chatRepo.removeAllMessages()
+            try {
+                chatRepo.removeAllMessages()
+            } catch (e: Exception) {
+                // show error in UI
+            }
+
         }
     }
 }

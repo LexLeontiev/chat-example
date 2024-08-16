@@ -31,6 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.github.lexleontiev.chatexample.data.LocalDataSource
 import com.github.lexleontiev.chatexample.feature.chat.ChatViewModel
 import com.github.lexleontiev.chatexample.feature.chat.R
 import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
@@ -98,6 +99,14 @@ internal fun ChatAppBar(
                         viewModel.debugClearChat()
                     }) {
                     Text("Clear chat")
+                }
+                DropdownMenuItem(
+                    onClick = {
+                        expanded = false
+                        // For debug purposes only
+                        LocalDataSource.throwFailure = true
+                    }) {
+                    Text("Emulate data retrieval error")
                 }
             }
         },
