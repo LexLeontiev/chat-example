@@ -30,7 +30,7 @@ class ChatRepositoryImpl(
 
         }.retryWhen { cause, attempt ->
             emit(Result.failure(cause))
-            delay(2000)
+            delay(3000)
             attempt < 3
         }
     }

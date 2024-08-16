@@ -27,7 +27,8 @@ class ChatViewModel @Inject constructor(
             chatRepo.getMessages()
                 .collect { result ->
                     result.onSuccess { messages ->
-                        _uiState.value = ScreenState.Result(ChatData(messages))
+                        val chatData = ChatData(messages)
+                        _uiState.value = ScreenState.Result(chatData)
                     }.onFailure { _ ->
                         _uiState.value = ScreenState.Error
                     }
