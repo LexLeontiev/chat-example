@@ -17,6 +17,7 @@ class LocalDataSource @Inject constructor(
         var throwFailure = false
     }
 
+    @Suppress("TooGenericExceptionThrown")
     fun getMessages(): Flow<List<Message>> = messageDao.getAllMessages().map {
         if (throwFailure) {
             throwFailure = false

@@ -28,6 +28,7 @@ import com.github.lexleontiev.chatexample.feature.chat.components.ScreenStub
 import kotlinx.coroutines.launch
 
 
+@Suppress("LongMethod")
 @Composable
 internal fun ChatScreen(
     modifier: Modifier = Modifier,

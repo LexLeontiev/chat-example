@@ -32,6 +32,7 @@ object DataModule {
         return database.messageDao()
     }
 
+    @Suppress("InjectDispatcher")
     @Provides
     fun provideChatRepository(
         localDataSource: LocalDataSource,
@@ -39,5 +40,4 @@ object DataModule {
     ): ChatRepository {
         return ChatRepositoryImpl(localDataSource, memoryCache, Dispatchers.IO)
     }
-
 }

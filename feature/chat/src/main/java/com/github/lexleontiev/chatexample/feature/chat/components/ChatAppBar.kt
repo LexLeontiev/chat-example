@@ -38,6 +38,7 @@ import com.github.lexleontiev.chatexample.feature.chat.R
 import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
 
 
+@Suppress("LongMethod")
 @Composable
 internal fun ChatAppBar(
     modifier: Modifier = Modifier,

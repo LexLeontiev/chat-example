@@ -11,6 +11,7 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
+const val IMITATE_NETWORK_CALL_DELAY_MS = 2000L
 
 @HiltViewModel
 class ChatViewModel @Inject constructor(
@@ -23,7 +24,7 @@ class ChatViewModel @Inject constructor(
     init {
         _uiState.value = ScreenState.Progress
         viewModelScope.launch {
-            delay(2000) // imitate network call
+            delay(IMITATE_NETWORK_CALL_DELAY_MS)
             chatRepo.getMessages()
                 .collect { result ->
                     result.onSuccess { messages ->
@@ -46,6 +47,7 @@ class ChatViewModel @Inject constructor(
         }
     }
 
+    @Suppress("TooGenericExceptionCaught", "SwallowedException")
     // use only for debug build
     fun debugReceivingMessage() {
         val message = Message.new(
@@ -61,6 +63,7 @@ class ChatViewModel @Inject constructor(
         }
     }
 
+    @Suppress("TooGenericExceptionCaught", "SwallowedException")
     // use only for debug build
     fun debugClearChat() {
         viewModelScope.launch {

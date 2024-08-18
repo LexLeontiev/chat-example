@@ -42,6 +42,7 @@ import androidx.compose.ui.unit.sp
 import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
 
 
+@Suppress("LongMethod")
 @Composable
 internal fun MessageInput(onSend: (String) -> Unit) {
     var textState by rememberSaveable(stateSaver = TextFieldValue.Saver) {
