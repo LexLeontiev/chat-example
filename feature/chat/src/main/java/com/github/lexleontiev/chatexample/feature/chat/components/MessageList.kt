@@ -42,7 +42,7 @@ internal fun MessageList(
     ) {
         items(
             count = messages.size,
-            key = { index -> messages[index].timestamp }
+            key = { index -> messages[index].id }
         ) { index ->
             val message = messages[index]
             // +1 because the list is reversed

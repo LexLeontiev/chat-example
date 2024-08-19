@@ -5,20 +5,20 @@ import javax.inject.Inject
 
 class MemoryCache @Inject constructor() {
 
-    private var messages: List<Message> = listOf()
+    private var messages = mutableListOf<Message>()
 
     fun getMessages(): List<Message> = messages
 
     fun saveMessage(message: Message) {
-        messages = listOf(message) + message
+        messages.add(message)
     }
 
     fun saveMessages(newMessages: List<Message>) {
-        messages = listOf()
-        messages = messages + newMessages
+        messages.clear()
+        messages.addAll(newMessages)
     }
 
     fun removeAllMessages() {
-        messages = listOf()
+        messages.clear()
     }
 }
