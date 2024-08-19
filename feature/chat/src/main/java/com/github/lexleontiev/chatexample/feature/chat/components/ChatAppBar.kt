@@ -32,9 +32,11 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.PopupProperties
 import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.github.lexleontiev.chatexample.data.LocalDataSource
 import com.github.lexleontiev.chatexample.feature.chat.ChatViewModel
 import com.github.lexleontiev.chatexample.feature.chat.R
+import com.github.lexleontiev.chatexample.feature.chat.ScreenState
 import com.github.lexleontiev.chatexample.feature.chat.ThemePreviews
 
 
@@ -45,6 +47,8 @@ internal fun ChatAppBar(
     viewModel: ChatViewModel = hiltViewModel()
 ) {
     var expanded by remember { mutableStateOf(false) }
+    val uiState by viewModel.uiState.collectAsStateWithLifecycle()
+
     TopAppBar(
         modifier = modifier.fillMaxWidth().testTag("ChatAppBar"),
         title = {
@@ -73,7 +77,11 @@ internal fun ChatAppBar(
             }
         },
         actions = {
-            IconButton(onClick = { expanded = true }) {
+            IconButton(onClick = {
+                if (uiState is ScreenState.Result) {
+                    expanded = true
+                }
+            }) {
                 Icon(
                     imageVector = Icons.Filled.MoreVert,
                     contentDescription = "Menu",
@@ -81,7 +89,7 @@ internal fun ChatAppBar(
                 )
             }
             DropdownMenu(
-                expanded = expanded,
+                expanded = expanded && uiState is ScreenState.Result,
                 onDismissRequest = { expanded = false },
                 properties = PopupProperties(
                     dismissOnBackPress = true,
