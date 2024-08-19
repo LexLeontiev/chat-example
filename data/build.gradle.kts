@@ -1,8 +1,12 @@
+version = LibraryAndroidCoordinates.LIBRARY_VERSION
+
 plugins {
-    id("com.android.application")
+    id("com.android.library")
     kotlin("android")
+    id("maven-publish")
     alias(libs.plugins.ksp)
     alias(libs.plugins.hilt)
+    publish
 }
 
 android {
@@ -10,24 +14,21 @@ android {
 
     defaultConfig {
         minSdk = libs.versions.min.sdk.version.get().toInt()
-        targetSdk = libs.versions.target.sdk.version.get().toInt()
-        namespace = "com.github.lexleontiev.chatexample.app"
+        namespace = "com.github.lexleontiev.chatexample.data"
 
-        applicationId = AppCoordinates.APP_ID
-        versionCode = AppCoordinates.APP_VERSION_CODE
-        versionName = AppCoordinates.APP_VERSION_NAME
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles("consumer-rules.pro")
     }
-    buildFeatures {
-        viewBinding = true
-    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_17
         targetCompatibility = JavaVersion.VERSION_17
     }
+
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_17.toString()
     }
+
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
@@ -38,41 +39,33 @@ android {
         }
     }
 
+    publishing {
+        singleVariant("release") {
+            withSourcesJar()
+            withJavadocJar()
+        }
+    }
+
     lint {
         warningsAsErrors = true
         abortOnError = true
         disable.add("GradleDependency")
     }
-
-    // Use this block to configure different flavors
-//    flavorDimensions("version")
-//    productFlavors {
-//        create("full") {
-//            dimension = "version"
-//            applicationIdSuffix = ".full"
-//        }
-//        create("demo") {
-//            dimension = "version"
-//            applicationIdSuffix = ".demo"
-//        }
-//    }
 }
 
 dependencies {
-    implementation(projects.feature.chat)
-
     implementation(libs.androidx.appcompat)
-    implementation(libs.androidx.constraint.layout)
     implementation(libs.androidx.core.ktx)
-    implementation(libs.material)
+
+    implementation(libs.room.runtime)
+    implementation(libs.room.ktx)
+    ksp(libs.room.compiler)
 
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 
     testImplementation(libs.junit)
 
+    androidTestImplementation(libs.androidx.test.runner)
     androidTestImplementation(libs.androidx.test.ext.junit)
-    androidTestImplementation(libs.androidx.test.ext.junit.ktx)
-    androidTestImplementation(libs.androidx.test.rules)
-    androidTestImplementation(libs.espresso.core)
 }
