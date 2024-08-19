@@ -4,6 +4,7 @@ import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.retryWhen
 import kotlinx.coroutines.withContext
 
@@ -19,20 +20,19 @@ class ChatRepositoryImpl(
             // load from fast memory first
             val cachedMessages = memoryCache.getMessages()
             if (cachedMessages.isNotEmpty()) {
-                emit(Result.success(cachedMessages))
+                emit(Result.success(cachedMessages.reversed()))
             }
 
             // load from persistent memory
             localDataSource.getMessages().collect { localMessages ->
                 memoryCache.saveMessages(localMessages)
-                emit(Result.success(localMessages))
+                emit(Result.success(localMessages.reversed()))
             }
-
-        }.retryWhen { cause, attempt ->
+        }.retryWhen { cause, _ ->
             emit(Result.failure(cause))
             delay(3000)
-            attempt < 3
-        }
+            true
+        }.flowOn(dispatcher)
     }
 
     override suspend fun sendMessage(message: Message) = withContext(dispatcher) {
